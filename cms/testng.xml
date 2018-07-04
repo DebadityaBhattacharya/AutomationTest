@@ -1,0 +1,55 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite 1">
+
+<listeners>
+        <listener class-name="base.AnnotationTransformer"/>
+  </listeners>
+  
+<test name="CMS Logiin Hamburger " >
+    <classes>
+	
+	  <class name="base.login"/>
+	   
+    </classes>
+    
+ </test>
+ 
+<test name="CMS StoryCreate" >
+    <classes>
+	
+	  <class name="story.blank_story"/>
+	   
+    </classes>
+    
+ </test>
+ 
+ <test name="CMS Planner" >
+    <classes>
+	
+	  <class name="planner.Idea_creation"/>
+	  <class name="planner.idea_rejection"/>
+	  <class name="planner.storyPromote"/>
+	  <class name="planner.storyOpen"/>
+	   <class name="planner.submitStory"/>
+	   <class name="planner.approveStory"/>
+	   <class name="planner.publish_story"/>
+	   <class name="planner.publish_story_delete"/>
+	   <class name="planner.story_collection"/>
+	   
+    </classes>
+    
+    
+    
+ </test>
+ 
+ <test name="CMS WorkSpace" >
+    <classes>
+	  <class name="workspace.Openstory_assertion"/>	
+    </classes>
+    
+    
+    
+ </test>
+ 
+</suite>
+

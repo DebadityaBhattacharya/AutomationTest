@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite 1]">
+  <listeners>
+    <listener class-name="base.AnnotationTransformer"/>
+  </listeners>
+  <test name="CMS StoryCreate(failed)">
+    <classes>
+      <class name="planner.idea_rejection">
+        <methods>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.idea_rejection -->
+      <class name="story.blank_story">
+        <methods>
+          <include name="story_create"/>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- story.blank_story -->
+      <class name="base.login">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- base.login -->
+      <class name="planner.submitStory">
+        <methods>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.submitStory -->
+      <class name="planner.Idea_creation">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- planner.Idea_creation -->
+      <class name="planner.storyPromote">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- planner.storyPromote -->
+      <class name="planner.storyOpen">
+        <methods>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.storyOpen -->
+    </classes>
+  </test> <!-- CMS StoryCreate(failed) -->
+  <test name="CMS Planner(failed)">
+    <classes>
+      <class name="planner.idea_rejection">
+        <methods>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.idea_rejection -->
+      <class name="story.blank_story">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- story.blank_story -->
+      <class name="base.login">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- base.login -->
+      <class name="planner.submitStory">
+        <methods>
+          <include name="submitStory"/>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.submitStory -->
+      <class name="planner.Idea_creation">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- planner.Idea_creation -->
+      <class name="planner.storyPromote">
+        <methods>
+          <include name="create"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- planner.storyPromote -->
+      <class name="planner.storyOpen">
+        <methods>
+          <include name="close"/>
+          <include name="create"/>
+        </methods>
+      </class> <!-- planner.storyOpen -->
+    </classes>
+  </test> <!-- CMS Planner(failed) -->
+</suite> <!-- Failed suite [Suite 1] -->
