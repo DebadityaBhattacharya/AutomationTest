@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -27,6 +28,34 @@ import org.xml.sax.Locator;
 
 public class pageClass extends cms_base
 {
+	public WebDriver driver;
+	JavascriptExecutor js;
+	WebDriverWait wait;
+	
+	public pageClass(WebDriver driver) throws InterruptedException {
+		this.driver = driver;
+		// This initElements method will create all WebElements
+		PageFactory.initElements(this.driver,this);
+		js = (JavascriptExecutor) driver;
+		Thread.sleep(5000);
+	}
+	
+	public void planner_page_wait()
+	{
+		wait = new WebDriverWait(this.driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
+	}
+	
+	public void page_scroll(int i)
+	{
+		js.executeScript("window.scrollBy(0,"+i+")");
+	}
+	
+	public void planner_horizontal_scroll(int i)
+	{
+		js.executeScript("arguments[0].scrollIntoView();",driver.findElement(By.xpath("html/body/app-root/app-secured-layout/ng-sidebar-container/div/section/app-planner/md-tab-group/div/md-tab-body[1]/div/app-story-tab/div/app-swim-lane["+i+"]/div/div/h3/span")));
+		
+	}
 	//loginpage
 	
 	@FindAll({@FindBy(css= "#mCSB_1_container>li>a")})
@@ -43,7 +72,6 @@ public class pageClass extends cms_base
 	
 	@FindBy(how=How.XPATH, using="html/body/app-root/app-open-layout/section/app-login/form/div[2]/md-input-container/div/div[1]/div/input") 
 	WebElement password;
-	
 	
 	
 	
@@ -200,11 +228,15 @@ public class pageClass extends cms_base
 	@FindBy(how=How.XPATH, using="html/body/app-root/app-secured-layout/ng-sidebar-container/div/section/app-story/form/md-tab-group/div/md-tab-body[1]/div/div/app-story-content/div/div[4]/div")
 	WebElement story_image;
 	
-	@FindBy(how=How.XPATH, using="html/body/div[2]/div/div[2]/md-dialog-container/app-image-library/div/div[2]/div[2]/div/div[1]/img")
-	WebElement select_image;
+	@FindAll({@FindBy(css=".img_wrap>img")})
+	public List<WebElement> select_image;
 	
 	
+	@FindBy(how=How.CSS, using=".btn.btn-secondary.mt-5.generate-btn-height")
+	WebElement generate_derivatives;
 	
+	@FindBy(how=How.CSS, using=".btn.btn-secondary.mt-4")
+	WebElement save_derivates;
 	
 	
 	//idea
@@ -645,24 +677,34 @@ public class pageClass extends cms_base
 		Thread.sleep(5000);
 		text1_content.clear();
 		text1_content.sendKeys("No, you're not time-travelling. Kapil Sharma and Sunil Grover are fighting again");	
-		text2_content.sendKeys("Test Sub Title Story");	
 		
-		try{
-			story_image.isDisplayed();
-		}
-		catch (Exception e) 
-		{
+		
+		
+			
+		
 
 			story_image.click();
 			
-		}
+		
 		
 		
 		
 		Thread.sleep(8000);
 		
-		select_image.click();
+		select_image.get(1).click();
 		Thread.sleep(2000);
+		
+		generate_derivatives.click();
+		
+		Thread.sleep(4000);
+		save_derivates.click();
+		
+		Thread.sleep(2000);
+		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,-500)");
+		
+		text2_content.sendKeys("Test Sub Title Story");	
 		
 		metadata.click();
 		
@@ -801,6 +843,15 @@ public class pageClass extends cms_base
 			System.out.println(count+" "+i.getText());
 			
 		}
-			
+				
+	}
+	
+	public String storycreate_wait()
+	{
+		
+		WebElement element = driver.findElement(By.xpath("html/body/app-root/app-secured-layout/ng-sidebar-container/div/section/app-planner/md-tab-group/div/md-tab-body[1]/div/app-story-tab/div/app-swim-lane[4]/div/div/ul/li[1]/app-swim-lane-item/div[2]/div[1]"));
+		System.out.println(element.getText());
+		return element.getText();
+		
 	}
 }

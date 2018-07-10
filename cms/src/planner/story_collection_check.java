@@ -17,6 +17,7 @@ import base.pageClass;
 
 public class story_collection_check extends cms_base
 {
+	pageClass pageclass;
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
 	{
@@ -27,18 +28,12 @@ public class story_collection_check extends cms_base
 	@Test
 	public void story_collection() throws IOException, InterruptedException
 	{
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
+		pageclass = new pageClass(driver);
 		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
-		Thread.sleep(5000); 
-		 
+		Thread.sleep(5000);  
 		pageclass.story_collection();
-		
 	}
 	
 	@AfterMethod

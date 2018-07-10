@@ -57,8 +57,7 @@ public class cms_base
 	{
 		setup();
 		driver.navigate().to(CONFIG.getProperty("loginurl"));
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
+		pageClass pageclass = new pageClass(driver);
 		pageclass.login_click();
 	}
 }

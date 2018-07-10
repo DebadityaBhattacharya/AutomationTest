@@ -17,7 +17,8 @@ import base.pageClass;
 
 public class manual_sorter extends cms_base
 {
-
+	pageClass pageclass;
+	
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
 	{
@@ -28,19 +29,12 @@ public class manual_sorter extends cms_base
 	@Test
 	public void manual_sorter_case1() throws IOException, InterruptedException
 	{
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
-		Thread.sleep(35000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
+		pageclass = new pageClass(driver);
+		Thread.sleep(5000);
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
-		Thread.sleep(5000); 
-		 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)", "");
-		
+		Thread.sleep(5000);  
+		pageclass.page_scroll(250);
 		pageclass.manual_sorter(6);
 		
 	}
@@ -49,7 +43,7 @@ public class manual_sorter extends cms_base
 	public void close()
 	{
 		
-		//driver.close();
+		driver.close();
 		
 	}
 	

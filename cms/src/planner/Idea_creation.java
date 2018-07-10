@@ -17,6 +17,7 @@ import base.pageClass;
 
 public class Idea_creation extends cms_base
 {
+	pageClass pageclass;
 
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
@@ -28,24 +29,13 @@ public class Idea_creation extends cms_base
 	@Test
 	public void idea_create() throws IOException, InterruptedException
 	{
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
-		Thread.sleep(35000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
+		pageclass = new pageClass(driver);
+		Thread.sleep(5000);
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
 		Thread.sleep(5000); 
-		 
-		int scroll = 250;
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,"+scroll+")", "");
-		
+		pageclass.page_scroll(250);
 		pageclass.add_newidea(driver);
-		
-		
-		
 	}
 	
 	@AfterMethod

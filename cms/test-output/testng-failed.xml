@@ -3,13 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="planner.publish_story">
+      <class name="story.blank_story">
         <methods>
-          <include name="story_publish"/>
-          <include name="close"/>
+          <include name="story_create"/>
           <include name="create"/>
         </methods>
-      </class> <!-- planner.publish_story -->
+      </class> <!-- story.blank_story -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

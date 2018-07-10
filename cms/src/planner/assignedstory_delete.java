@@ -16,6 +16,8 @@ import base.pageClass;
 
 public class assignedstory_delete extends cms_base
 {
+	pageClass pageclass;
+	
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
 	{
@@ -23,26 +25,16 @@ public class assignedstory_delete extends cms_base
 	}
 
 	@Test
-	public void assignedstory_delete() throws InterruptedException
+	public void delete_assignedstory() throws InterruptedException
 	{
 		
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
+		pageclass = new pageClass(driver);
 		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
-		
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
 		Thread.sleep(5000); 
-		
-		
-		
 		pageclass.storypromote(driver);
-		
 		driver.navigate().refresh();
-		
 		Thread.sleep(5000);
 		Assert.assertTrue(pageclass.assignedstory_delete(), "Issue with Assigned Story Deletion");
 		

@@ -16,7 +16,8 @@ import base.cms_base;
 import base.pageClass;
 
 public class idea_rejection extends cms_base
-{
+{	
+	pageClass pageclass;
 
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
@@ -27,25 +28,15 @@ public class idea_rejection extends cms_base
 	@Test
 	public void idea_reject() throws IOException, InterruptedException
 	{
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
+		pageclass = new pageClass(driver);
 		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
 		Thread.sleep(5000); 
-		 
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)", "");
-		
-		pageclass.add_newidea(driver);
-		 
+		pageclass.page_scroll(250);
+		pageclass.add_newidea(driver); 
 		driver.navigate().refresh();
-		
 		Thread.sleep(5000);
-		
 		Assert.assertTrue(pageclass.delete_idea(driver), "Issue with Idea Deletion");
 		
 	}

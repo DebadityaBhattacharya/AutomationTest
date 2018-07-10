@@ -34,7 +34,7 @@
 	   <class name="planner.approveStory"/>
 	   <class name="planner.publish_story"/>
 	   <class name="planner.publish_story_delete"/>
-	   <class name="planner.story_collection"/>
+	   <class name="planner.story_collection_check"/>
 	   
     </classes>
     

@@ -25,29 +25,20 @@ public class login extends cms_base
 		
 		
 		driver.navigate().to(CONFIG.getProperty("loginurl"));
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
+		pageClass pageclass = new pageClass(driver);
 		pageclass.login_click();
+		
 	}
 	
 	@Test
 	public void hamburger_click() throws IOException, InterruptedException
 	{
-		
-		
 		driver.navigate().to(CONFIG.getProperty("loginurl"));
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
-		
+		pageClass pageclass = new pageClass(driver);
 		pageclass.login_click();
-		
-		Thread.sleep(30000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		 wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		
+		Thread.sleep(5000);
+		pageclass.planner_page_wait();
 		pageclass.menu_click();
-		
 		Thread.sleep(2000);
 		pageclass.newstory_click();
 	}
@@ -58,7 +49,7 @@ public class login extends cms_base
 	public void close()
 	{
 		
-		//driver.close();
+		driver.close();
 		
 	}
 }

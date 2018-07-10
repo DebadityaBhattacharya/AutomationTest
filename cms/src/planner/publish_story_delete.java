@@ -17,7 +17,8 @@ import base.pageClass;
 
 public class publish_story_delete extends cms_base
 {
-
+	pageClass pageclass;
+	
 	@BeforeMethod
 	public void create() throws IOException, InterruptedException
 	{
@@ -28,30 +29,17 @@ public class publish_story_delete extends cms_base
 	@Test
 	public void story_publish_delete() throws IOException, InterruptedException, AWTException
 	{
-		pageClass pageclass = new pageClass();
-		PageFactory.initElements(driver, pageclass);
-		
+		pageClass pageclass = new pageClass(driver);
 		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".addStory"))));
-		 
+		pageclass.planner_page_wait();
 		pageclass.select_website(3);
 		Thread.sleep(5000); 
-		
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("window.scrollBy(0,250)");
-		
+		pageclass.page_scroll(250);
 		Thread.sleep(3000);
-		
 		pageclass.openstoryblock_click();
-		
-		
-		
 		Thread.sleep(1000);
-		jse.executeScript("arguments[0].scrollIntoView();",driver.findElement(By.xpath("html/body/app-root/app-secured-layout/ng-sidebar-container/div/section/app-planner/md-tab-group/div/md-tab-body[1]/div/app-story-tab/div/app-swim-lane[6]/div/div/h3/span")));
-	
-		pageclass.delete_publish();
-		
+		pageclass.planner_horizontal_scroll(6);
+		pageclass.delete_publish();	
 	}
 	
 	@AfterMethod
