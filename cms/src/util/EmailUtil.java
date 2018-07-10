@@ -153,7 +153,7 @@ public class EmailUtil {
 		 CONFIG.load(cn);
 		
         final String fromEmail = "debaditya.bhattacharya@abpdigital.in"; //requires valid email id
-        final String password = "Menaka*111"; // correct password for email id
+        final String password = "SETPassword"; // correct password for email id
         
          String[] text = new String[4];
         try {
