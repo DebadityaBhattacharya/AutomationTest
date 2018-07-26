@@ -235,6 +235,10 @@ public class pageClass extends cms_base
 	@FindBy(how=How.CSS, using=".btn.btn-secondary.mt-5.generate-btn-height")
 	WebElement generate_derivatives;
 	
+
+	@FindAll({@FindBy(css=".btn.btn-secondary.mt-5.generate-btn-height")})
+	public List<WebElement> find_generate_derivatives;
+	
 	@FindBy(how=How.CSS, using=".btn.btn-secondary.mt-4")
 	WebElement save_derivates;
 	
@@ -326,7 +330,8 @@ public class pageClass extends cms_base
 	@FindBy(how=How.XPATH, using="html/body/app-root/app-secured-layout/ng-sidebar-container/div/section/app-workspace/div/md-tab-group/div/md-tab-body[2]/div/app-workspace-list/div/div/ul/li[1]/app-workspace-item/div/div[4]/i")
 	WebElement deletebutton;
 	
-	
+	@FindBy(how=How.XPATH, using=".//*[@id='md-tab-label-1-0']")
+	WebElement w_writingtab;
 	
 	
 	//Sorter
@@ -691,8 +696,14 @@ public class pageClass extends cms_base
 		
 		Thread.sleep(8000);
 		
-		select_image.get(1).click();
+		select_image.get(3).click();
 		Thread.sleep(2000);
+		
+		if(find_generate_derivatives.size()==0)
+		{
+			driver.findElement(By.xpath(".//*[@id='cdk-overlay-1']/md-dialog-container/app-image-library/div/div[2]/div[1]/div/div[1]/img")).click();
+			Thread.sleep(4000);
+		}
 		
 		generate_derivatives.click();
 		
@@ -778,6 +789,7 @@ public class pageClass extends cms_base
 	public String openstoryb()
 	{
 	
+		w_writingtab.click();
 		return w_openstory.getText();
 
 	}
